@@ -2,6 +2,11 @@ import org.example.PhoneBook;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 public class PhoneBookTest {
     @Test
     public void addTest(){
@@ -30,5 +35,18 @@ public class PhoneBookTest {
         Assert.assertEquals("89541233456", phoneBook.findByName("Joe"));
         Assert.assertEquals("89541233457", phoneBook.findByName("Bob"));
         Assert.assertEquals("89541233455", phoneBook.findByName("Rob"));
+    }
+
+    @Test
+    public void printAllNamesTest(){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(byteArrayOutputStream);
+        System.setOut(printStream);
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Joe", "89541233456");
+        phoneBook.add("Bob", "89541233457");
+        phoneBook.add("Rob", "89541233455");
+        Assert.assertEquals("Bob\nJoe\nRob", byteArrayOutputStream.toString());
+
     }
 }
