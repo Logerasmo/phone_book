@@ -1,10 +1,7 @@
 import org.example.PhoneBook;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class PhoneBookTest {
@@ -46,7 +43,11 @@ public class PhoneBookTest {
         phoneBook.add("Joe", "89541233456");
         phoneBook.add("Bob", "89541233457");
         phoneBook.add("Rob", "89541233455");
-        Assert.assertEquals("Bob\nJoe\nRob", byteArrayOutputStream.toString());
+        phoneBook.printAllNames();
+        String expected = "Bob" + System.lineSeparator()
+                + "Joe" + System.lineSeparator()
+                + "Rob" + System.lineSeparator();
+        Assert.assertEquals(expected, byteArrayOutputStream.toString());
 
     }
 }

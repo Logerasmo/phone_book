@@ -29,7 +29,7 @@ public class PhoneBook {
     }
 
     public void printAllNames(){
-        System.out.println("-_-");
+        numbers.keySet().stream().sorted().forEach(System.out::println);
     }
 
 }
